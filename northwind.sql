@@ -10,7 +10,7 @@ USE northwind ;
 -- Table northwind.customers
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS northwind.customers (
-  id INT(11) NOT NULL AUTO_INCREMENT,
+  id INT NOT NULL AUTO_INCREMENT,
   company VARCHAR(50) NULL DEFAULT NULL,
   last_name VARCHAR(50) NULL DEFAULT NULL,
   first_name VARCHAR(50) NULL DEFAULT NULL,
@@ -36,14 +36,14 @@ CREATE TABLE IF NOT EXISTS northwind.customers (
   INDEX zip_postal_code (zip_postal_code ASC),
   INDEX state_province (state_province ASC))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = UTF8MB4;
 
 
 -- -----------------------------------------------------
 -- Table northwind.employees
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS northwind.employees (
-  id INT(11) NOT NULL AUTO_INCREMENT,
+  id INT NOT NULL AUTO_INCREMENT,
   company VARCHAR(50) NULL DEFAULT NULL,
   last_name VARCHAR(50) NULL DEFAULT NULL,
   first_name VARCHAR(50) NULL DEFAULT NULL,
@@ -69,26 +69,26 @@ CREATE TABLE IF NOT EXISTS northwind.employees (
   INDEX zip_postal_code (zip_postal_code ASC),
   INDEX state_province (state_province ASC))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = UTF8MB4;
 
 
 -- -----------------------------------------------------
 -- Table northwind.privileges
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS northwind.privileges (
-  id INT(11) NOT NULL AUTO_INCREMENT,
+  id INT NOT NULL AUTO_INCREMENT,
   privilege_name VARCHAR(50) NULL DEFAULT NULL,
   PRIMARY KEY (id))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = UTF8MB4;
 
 
 -- -----------------------------------------------------
 -- Table northwind.employee_privileges
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS northwind.employee_privileges (
-  employee_id INT(11) NOT NULL,
-  privilege_id INT(11) NOT NULL,
+  employee_id INT NOT NULL,
+  privilege_id INT NOT NULL,
   PRIMARY KEY (employee_id, privilege_id),
   INDEX employee_id (employee_id ASC),
   INDEX privilege_id (privilege_id ASC),
@@ -99,25 +99,25 @@ CREATE TABLE IF NOT EXISTS northwind.employee_privileges (
     FOREIGN KEY (privilege_id)
     REFERENCES northwind.privileges (id))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = UTF8MB4;
 
 
 -- -----------------------------------------------------
 -- Table northwind.inventory_transaction_types
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS northwind.inventory_transaction_types (
-  id TINYINT(4) NOT NULL,
+  id TINYINT NOT NULL,
   type_name VARCHAR(50) NOT NULL,
   PRIMARY KEY (id))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = UTF8MB4;
 
 
 -- -----------------------------------------------------
 -- Table northwind.shippers
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS northwind.shippers (
-  id INT(11) NOT NULL AUTO_INCREMENT,
+  id INT NOT NULL AUTO_INCREMENT,
   company VARCHAR(50) NULL DEFAULT NULL,
   last_name VARCHAR(50) NULL DEFAULT NULL,
   first_name VARCHAR(50) NULL DEFAULT NULL,
@@ -143,41 +143,41 @@ CREATE TABLE IF NOT EXISTS northwind.shippers (
   INDEX zip_postal_code (zip_postal_code ASC),
   INDEX state_province (state_province ASC))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = UTF8MB4;
 
 
 -- -----------------------------------------------------
 -- Table northwind.orders_tax_status
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS northwind.orders_tax_status (
-  id TINYINT(4) NOT NULL,
+  id TINYINT NOT NULL,
   tax_status_name VARCHAR(50) NOT NULL,
   PRIMARY KEY (id))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = UTF8MB4;
 
 
 -- -----------------------------------------------------
 -- Table northwind.orders_status
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS northwind.orders_status (
-  id TINYINT(4) NOT NULL,
+  id TINYINT NOT NULL,
   status_name VARCHAR(50) NOT NULL,
   PRIMARY KEY (id))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = UTF8MB4;
 
 
 -- -----------------------------------------------------
 -- Table northwind.orders
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS northwind.orders (
-  id INT(11) NOT NULL AUTO_INCREMENT,
-  employee_id INT(11) NULL DEFAULT NULL,
-  customer_id INT(11) NULL DEFAULT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
+  employee_id INT NULL DEFAULT NULL,
+  customer_id INT NULL DEFAULT NULL,
   order_date DATETIME NULL DEFAULT NULL,
   shipped_date DATETIME NULL DEFAULT NULL,
-  shipper_id INT(11) NULL DEFAULT NULL,
+  shipper_id INT NULL DEFAULT NULL,
   ship_name VARCHAR(50) NULL DEFAULT NULL,
   ship_address LONGTEXT NULL DEFAULT NULL,
   ship_city VARCHAR(50) NULL DEFAULT NULL,
@@ -190,8 +190,8 @@ CREATE TABLE IF NOT EXISTS northwind.orders (
   paid_date DATETIME NULL DEFAULT NULL,
   notes LONGTEXT NULL DEFAULT NULL,
   tax_rate DOUBLE NULL DEFAULT '0',
-  tax_status_id TINYINT(4) NULL DEFAULT NULL,
-  status_id TINYINT(4) NULL DEFAULT '0',
+  tax_status_id TINYINT NULL DEFAULT NULL,
+  status_id TINYINT NULL DEFAULT '0',
   PRIMARY KEY (id),
   INDEX customer_id (customer_id ASC),
   INDEX employee_id (employee_id ASC),
@@ -214,7 +214,7 @@ CREATE TABLE IF NOT EXISTS northwind.orders (
     FOREIGN KEY (status_id)
     REFERENCES northwind.orders_status (id))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = UTF8MB4;
 
 
 -- -----------------------------------------------------
@@ -222,41 +222,41 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS northwind.products (
   supplier_ids LONGTEXT NULL DEFAULT NULL,
-  id INT(11) NOT NULL AUTO_INCREMENT,
+  id INT NOT NULL AUTO_INCREMENT,
   product_code VARCHAR(25) NULL DEFAULT NULL,
   product_name VARCHAR(50) NULL DEFAULT NULL,
   description LONGTEXT NULL DEFAULT NULL,
   standard_cost DECIMAL(19,4) NULL DEFAULT '0.0000',
   list_price DECIMAL(19,4) NOT NULL DEFAULT '0.0000',
-  reorder_level INT(11) NULL DEFAULT NULL,
-  target_level INT(11) NULL DEFAULT NULL,
+  reorder_level INT NULL DEFAULT NULL,
+  target_level INT NULL DEFAULT NULL,
   quantity_per_unit VARCHAR(50) NULL DEFAULT NULL,
-  discontinued TINYINT(1) NOT NULL DEFAULT '0',
-  minimum_reorder_quantity INT(11) NULL DEFAULT NULL,
+  discontinued TINYINT NOT NULL DEFAULT '0',
+  minimum_reorder_quantity INT NULL DEFAULT NULL,
   category VARCHAR(50) NULL DEFAULT NULL,
   attachments LONGBLOB NULL DEFAULT NULL,
   PRIMARY KEY (id),
   INDEX product_code (product_code ASC))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = UTF8MB4;
 
 
 -- -----------------------------------------------------
 -- Table northwind.purchase_order_status
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS northwind.purchase_order_status (
-  id INT(11) NOT NULL,
+  id INT NOT NULL,
   status VARCHAR(50) NULL DEFAULT NULL,
   PRIMARY KEY (id))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = UTF8MB4;
 
 
 -- -----------------------------------------------------
 -- Table northwind.suppliers
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS northwind.suppliers (
-  id INT(11) NOT NULL AUTO_INCREMENT,
+  id INT NOT NULL AUTO_INCREMENT,
   company VARCHAR(50) NULL DEFAULT NULL,
   last_name VARCHAR(50) NULL DEFAULT NULL,
   first_name VARCHAR(50) NULL DEFAULT NULL,
@@ -282,19 +282,19 @@ CREATE TABLE IF NOT EXISTS northwind.suppliers (
   INDEX zip_postal_code (zip_postal_code ASC),
   INDEX state_province (state_province ASC))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = UTF8MB4;
 
 
 -- -----------------------------------------------------
 -- Table northwind.purchase_orders
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS northwind.purchase_orders (
-  id INT(11) NOT NULL AUTO_INCREMENT,
-  supplier_id INT(11) NULL DEFAULT NULL,
-  created_by INT(11) NULL DEFAULT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
+  supplier_id INT NULL DEFAULT NULL,
+  created_by INT NULL DEFAULT NULL,
   submitted_date DATETIME NULL DEFAULT NULL,
   creation_date DATETIME NULL DEFAULT NULL,
-  status_id INT(11) NULL DEFAULT '0',
+  status_id INT NULL DEFAULT '0',
   expected_date DATETIME NULL DEFAULT NULL,
   shipping_fee DECIMAL(19,4) NOT NULL DEFAULT '0.0000',
   taxes DECIMAL(19,4) NOT NULL DEFAULT '0.0000',
@@ -302,9 +302,9 @@ CREATE TABLE IF NOT EXISTS northwind.purchase_orders (
   payment_amount DECIMAL(19,4) NULL DEFAULT '0.0000',
   payment_method VARCHAR(50) NULL DEFAULT NULL,
   notes LONGTEXT NULL DEFAULT NULL,
-  approved_by INT(11) NULL DEFAULT NULL,
+  approved_by INT NULL DEFAULT NULL,
   approved_date DATETIME NULL DEFAULT NULL,
-  submitted_by INT(11) NULL DEFAULT NULL,
+  submitted_by INT NULL DEFAULT NULL,
   PRIMARY KEY (id),
   INDEX created_by (created_by ASC),
   INDEX status_id (status_id ASC),
@@ -319,21 +319,21 @@ CREATE TABLE IF NOT EXISTS northwind.purchase_orders (
     FOREIGN KEY (supplier_id)
     REFERENCES northwind.suppliers (id))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = UTF8MB4;
 
 
 -- -----------------------------------------------------
 -- Table northwind.inventory_transactions
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS northwind.inventory_transactions (
-  id INT(11) NOT NULL AUTO_INCREMENT,
-  transaction_type TINYINT(4) NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
+  transaction_type TINYINT NOT NULL,
   transaction_created_date DATETIME NULL DEFAULT NULL,
   transaction_modified_date DATETIME NULL DEFAULT NULL,
-  product_id INT(11) NOT NULL,
-  quantity INT(11) NOT NULL,
-  purchase_order_id INT(11) NULL DEFAULT NULL,
-  customer_order_id INT(11) NULL DEFAULT NULL,
+  product_id INT NOT NULL,
+  quantity INT NOT NULL,
+  purchase_order_id INT NULL DEFAULT NULL,
+  customer_order_id INT NULL DEFAULT NULL,
   comments VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (id),
   INDEX customer_order_id (customer_order_id ASC),
@@ -353,15 +353,15 @@ CREATE TABLE IF NOT EXISTS northwind.inventory_transactions (
     FOREIGN KEY (transaction_type)
     REFERENCES northwind.inventory_transaction_types (id))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = UTF8MB4;
 
 
 -- -----------------------------------------------------
 -- Table northwind.invoices
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS northwind.invoices (
-  id INT(11) NOT NULL AUTO_INCREMENT,
-  order_id INT(11) NULL DEFAULT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
+  order_id INT NULL DEFAULT NULL,
   invoice_date DATETIME NULL DEFAULT NULL,
   due_date DATETIME NULL DEFAULT NULL,
   tax DECIMAL(19,4) NULL DEFAULT '0.0000',
@@ -373,34 +373,34 @@ CREATE TABLE IF NOT EXISTS northwind.invoices (
     FOREIGN KEY (order_id)
     REFERENCES northwind.orders (id))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = UTF8MB4;
 
 
 -- -----------------------------------------------------
 -- Table northwind.order_details_status
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS northwind.order_details_status (
-  id INT(11) NOT NULL,
+  id INT NOT NULL,
   status_name VARCHAR(50) NOT NULL,
   PRIMARY KEY (id))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = UTF8MB4;
 
 
 -- -----------------------------------------------------
 -- Table northwind.order_details
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS northwind.order_details (
-  id INT(11) NOT NULL AUTO_INCREMENT,
-  order_id INT(11) NOT NULL,
-  product_id INT(11) NULL DEFAULT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
+  order_id INT NOT NULL,
+  product_id INT NULL DEFAULT NULL,
   quantity DECIMAL(18,4) NOT NULL DEFAULT '0.0000',
   unit_price DECIMAL(19,4) NULL DEFAULT '0.0000',
   discount DOUBLE NOT NULL DEFAULT '0',
-  status_id INT(11) NULL DEFAULT NULL,
+  status_id INT NULL DEFAULT NULL,
   date_allocated DATETIME NULL DEFAULT NULL,
-  purchase_order_id INT(11) NULL DEFAULT NULL,
-  inventory_id INT(11) NULL DEFAULT NULL,
+  purchase_order_id INT NULL DEFAULT NULL,
+  inventory_id INT NULL DEFAULT NULL,
   PRIMARY KEY (id),
   INDEX inventory_id (inventory_id ASC),
   INDEX product_id (product_id ASC),
@@ -417,21 +417,21 @@ CREATE TABLE IF NOT EXISTS northwind.order_details (
     FOREIGN KEY (status_id)
     REFERENCES northwind.order_details_status (id))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = UTF8MB4;
 
 
 -- -----------------------------------------------------
 -- Table northwind.purchase_order_details
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS northwind.purchase_order_details (
-  id INT(11) NOT NULL AUTO_INCREMENT,
-  purchase_order_id INT(11) NOT NULL,
-  product_id INT(11) NULL DEFAULT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
+  purchase_order_id INT NOT NULL,
+  product_id INT NULL DEFAULT NULL,
   quantity DECIMAL(18,4) NOT NULL,
   unit_cost DECIMAL(19,4) NOT NULL,
   date_received DATETIME NULL DEFAULT NULL,
-  posted_to_inventory TINYINT(1) NOT NULL DEFAULT '0',
-  inventory_id INT(11) NULL DEFAULT NULL,
+  posted_to_inventory TINYINT NOT NULL DEFAULT '0',
+  inventory_id INT NULL DEFAULT NULL,
   PRIMARY KEY (id),
   INDEX inventory_id (inventory_id ASC),
   INDEX purchase_order_id (purchase_order_id ASC),
@@ -446,7 +446,7 @@ CREATE TABLE IF NOT EXISTS northwind.purchase_order_details (
     FOREIGN KEY (purchase_order_id)
     REFERENCES northwind.purchase_orders (id))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = UTF8MB4;
 
 
 -- -----------------------------------------------------
@@ -457,21 +457,21 @@ CREATE TABLE IF NOT EXISTS northwind.sales_reports (
   display VARCHAR(50) NULL DEFAULT NULL,
   title VARCHAR(50) NULL DEFAULT NULL,
   filter_row_source LONGTEXT NULL DEFAULT NULL,
-  default_val TINYINT(1) NOT NULL DEFAULT '0',
+  default_val TINYINT NOT NULL DEFAULT '0',
   PRIMARY KEY (group_by))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = UTF8MB4;
 
 
 -- -----------------------------------------------------
 -- Table northwind.strings
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS northwind.strings (
-  string_id INT(11) NOT NULL AUTO_INCREMENT,
+  string_id INT NOT NULL AUTO_INCREMENT,
   string_data VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (string_id))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+DEFAULT CHARACTER SET = UTF8MB4;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
